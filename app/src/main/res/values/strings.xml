@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">JulianOnAndroid</string>
+    <string name="Repeat">Powtarzaj</string>
+    <string name="Practice">Ćwicz</string>
+    <string name="add_repetition">Dodaj powtorzenie</string>
+    <string name="two_sides">W dwie strony</string>
+    <string name="name">Nazwa</string>
+    <string name="topic">Temat</string>
+    <string name="add">Dodaj</string>
 </resources>
