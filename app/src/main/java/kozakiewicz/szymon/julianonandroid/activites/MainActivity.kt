@@ -18,4 +18,9 @@ class MainActivity : AppCompatActivity() {
         val intent:Intent=Intent(this, AddRepetitionActivity::class.java)
         startActivity(intent)
     }
+
+    fun onRepeat(view: View) {
+        val intent:Intent=Intent(this, RepeatListActivity::class.java)
+        startActivity(intent)
+    }
 }

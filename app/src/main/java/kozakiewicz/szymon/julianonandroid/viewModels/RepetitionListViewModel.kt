@@ -12,6 +12,9 @@ class RepetitionListViewModel(application: Application): AndroidViewModel(applic
     private var dragsRepository=Repository(application)
 
     private var repetitionsList: LiveData<List<Repetition>> =dragsRepository.getAllRepetitionsForToday()
-        get() = field
+    fun getAllRepetitionslist(): LiveData<List<Repetition>>
+    {
+       return repetitionsList
+    }
 
 }

@@ -7,4 +7,11 @@
     <string name="name">Nazwa</string>
     <string name="topic">Temat</string>
     <string name="add">Dodaj</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="do_repetition">Rób</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>
