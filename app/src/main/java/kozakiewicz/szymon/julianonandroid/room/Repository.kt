@@ -24,8 +24,16 @@ class Repository(aplication: Application){
         }
     }
 
-    fun insertNewRepetion(newRepetition: Repetition)= CoroutineScope(Dispatchers.IO).launch {
-        dao.insertRepetition(newRepetition)
+    fun insertNewRepetion(newRepetition: Repetition):Long
+    {
+        var job=CoroutineScope(Dispatchers.IO).async {
+            dao.insertRepetition(newRepetition)
+
+        }
+
+        return runBlocking {
+            return@runBlocking job.await()
+        }
     }
 
     fun getAllRepetitionsForToday(): LiveData<List<Repetition>> {
@@ -37,5 +45,9 @@ class Repository(aplication: Application){
         return runBlocking {
             return@runBlocking job.await()
         }
+    }
+
+    fun insertNewQuestion(question: Question)= CoroutineScope(Dispatchers.IO).launch {
+        dao.insertQuestion(question)
     }
 }

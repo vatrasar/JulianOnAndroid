@@ -1,12 +1,14 @@
 package kozakiewicz.szymon.julianonandroid.activites
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Switch
 import androidx.appcompat.widget.SwitchCompat
+import androidx.room.Transaction
 import kozakiewicz.szymon.julianonandroid.R
 import kozakiewicz.szymon.julianonandroid.room.Repetition
 import kozakiewicz.szymon.julianonandroid.room.Repository
@@ -20,7 +22,7 @@ class AddRepetitionActivity : AppCompatActivity() {
         repository= Repository(application)
     }
 
-
+    @Transaction
     fun onAddRepetition(view: View) {
 
         var txtName=findViewById<EditText>(R.id.txtRepetitionName)
@@ -29,7 +31,11 @@ class AddRepetitionActivity : AppCompatActivity() {
             return
         var switchIsReverse=findViewById<Switch>(R.id.switchIsReverse)
         var newRepetition:Repetition=Repetition(txtName.text.toString(),txtTopicName.text.toString(),repository.getMaxNumberFromDatabase(txtName.text.toString()),switchIsReverse.isChecked)
-        repository.insertNewRepetion(newRepetition)
-        finish()
+        var id=repository.insertNewRepetion(newRepetition)
+        val myIntent: Intent = Intent(this, AddNewQuestionActivity::class.java)
+
+        myIntent.putExtra("repetitionId",id)
+        startActivity(myIntent)
+
     }
 }

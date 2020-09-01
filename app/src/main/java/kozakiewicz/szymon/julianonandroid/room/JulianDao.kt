@@ -7,7 +7,10 @@ import androidx.room.*
 interface JulianDao {
 
     @Insert
-    fun insertRepetition(newRepetition: Repetition)
+    fun insertRepetition(newRepetition: Repetition):Long
+
+    @Insert
+    fun insertQuestion(newQuestion: Question):Long
 
     @Delete
     fun delete(repetitionToDelete: Repetition)

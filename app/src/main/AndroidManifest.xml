@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activites.RepeatListActivity"></activity>
+        <activity android:name=".activites.AddNewQuestionActivity"></activity>
+        <activity android:name=".activites.RepeatListActivity" />
         <activity android:name=".activites.AddRepetitionActivity" />
         <activity android:name=".activites.MainActivity">
             <intent-filter>
