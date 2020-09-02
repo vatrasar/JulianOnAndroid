@@ -24,5 +24,11 @@ interface JulianDao {
     @Query("SELECT * FROM Repetition")
     fun getAllRepetitionsForToday():LiveData<List<Repetition>>
 
+    @Query("SELECT * FROM Question WHERE parentRepetitionId=(:repetitionId)")
+    fun getAllQuestionsOfRepetition(repetitionId:Int):List<Question>
+
+    @Query("SELECT * FROM Repetition WHERE id=(:repetitionId)")
+    fun getRepetition(repetitionId: Int):Repetition
+
 
 }

@@ -12,7 +12,7 @@
         tools:layout_editor_absoluteY="1dp">
 
         <TextView
-            android:id="@+id/txtRepetitionName"
+            android:id="@+id/labRemainingQuestionCounter"
             android:layout_width="50dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"

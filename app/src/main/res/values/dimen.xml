@@ -2,4 +2,5 @@
     <dimen name="menu_btn_spaces">5dip</dimen>
     <dimen name="add_repetition_form_spaces">15dip</dimen>
     <dimen name="add_repetition_horizontal_margins">5dip</dimen>
+    <dimen name="repeat_margin">10dip</dimen>
 </resources>

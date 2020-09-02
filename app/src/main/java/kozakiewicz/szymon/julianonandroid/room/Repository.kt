@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class Repository(aplication: Application){
     private var dao:JulianDao
@@ -49,5 +50,28 @@ class Repository(aplication: Application){
 
     fun insertNewQuestion(question: Question)= CoroutineScope(Dispatchers.IO).launch {
         dao.insertQuestion(question)
+    }
+
+    fun getAllQuestionsOfRepetition(repetitionId:Int): List<Question> {
+        var job=CoroutineScope(Dispatchers.IO).async {
+            dao.getAllQuestionsOfRepetition(repetitionId)
+
+        }
+
+        return runBlocking {
+            return@runBlocking job.await()
+        }
+    }
+
+    fun getRepetition(repetitionId: Int): Repetition {
+
+        var job=CoroutineScope(Dispatchers.IO).async {
+            dao.getRepetition(repetitionId)
+
+        }
+
+        return runBlocking {
+            return@runBlocking job.await()
+        }
     }
 }

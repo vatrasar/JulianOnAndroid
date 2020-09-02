@@ -1,13 +1,11 @@
 package kozakiewicz.szymon.julianonandroid.activites
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Switch
-import androidx.appcompat.widget.SwitchCompat
 import androidx.room.Transaction
 import kozakiewicz.szymon.julianonandroid.R
 import kozakiewicz.szymon.julianonandroid.room.Repetition
@@ -25,7 +23,7 @@ class AddRepetitionActivity : AppCompatActivity() {
     @Transaction
     fun onAddRepetition(view: View) {
 
-        var txtName=findViewById<EditText>(R.id.txtRepetitionName)
+        var txtName=findViewById<EditText>(R.id.labRemainingQuestionCounter)
         var txtTopicName=findViewById<EditText>(R.id.txtRepetitionTopic)
         if(txtName.text.isBlank())
             return
