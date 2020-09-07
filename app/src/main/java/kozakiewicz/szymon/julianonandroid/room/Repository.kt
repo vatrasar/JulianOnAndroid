@@ -74,4 +74,17 @@ class Repository(aplication: Application){
             return@runBlocking job.await()
         }
     }
+
+    fun getQuestion(questionId: Int): Question {
+
+        var job=CoroutineScope(Dispatchers.IO).async {
+            dao.getQuestion(questionId)
+
+
+        }
+
+        return runBlocking {
+            return@runBlocking job.await()
+        }
+    }
 }

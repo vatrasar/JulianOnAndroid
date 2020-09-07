@@ -30,5 +30,8 @@ interface JulianDao {
     @Query("SELECT * FROM Repetition WHERE id=(:repetitionId)")
     fun getRepetition(repetitionId: Int):Repetition
 
+    @Query("SELECT * FROM Question WHERE id=(:questionId)")
+    fun getQuestion(questionId: Int):Question
+
 
 }

@@ -18,4 +18,8 @@
     <string name="answer">Odpowiedź</string>
     <string name="checkAnswer">Sprawdź odpowiedź</string>
     <string name="remaining">Pozostało</string>
+    <string name="yourAnswer">Twoja odpowiedź</string>
+    <string name="know">Umiem</string>
+    <string name="dontKnow">Nie umiem</string>
+
 </resources>

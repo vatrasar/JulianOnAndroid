@@ -51,16 +51,16 @@
                         android:layout_marginLeft="@dimen/repeat_margin"
                         android:layout_marginBottom="@dimen/repeat_margin"
                         android:fontFamily="sans-serif"
-                        android:text="@string/question"
+                        android:text="@string/answer"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/labQuestion"
+                        android:id="@+id/labAnswer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/repeat_margin"
-                        android:text="TextView" />
+                        android:layout_marginLeft="@dimen/add_repetition_horizontal_margins" />
+
                 </LinearLayout>
             </ScrollView>
 
@@ -77,28 +77,38 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/repeat_margin"
                     android:layout_marginBottom="@dimen/repeat_margin"
-                    android:text="@string/answer"
+                    android:text="@string/yourAnswer"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/txtMyAnswer"
+                <TextView
+                    android:id="@+id/labYourAnswer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/repeat_margin"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/add_repetition_horizontal_margins" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnCheckAnswer"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:onClick="onCheckAnswer"
-                android:text="@string/checkAnswer" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCheckAnswer"
+                    android:layout_width="@dimen/answerPageButtonWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dip"
+                    android:text="@string/know" />
+
+                <Button
+                    android:id="@+id/btnDontKnow"
+                    android:layout_width="@dimen/answerPageButtonWidth"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dontKnow" />
+            </LinearLayout>
 
         </LinearLayout>
 

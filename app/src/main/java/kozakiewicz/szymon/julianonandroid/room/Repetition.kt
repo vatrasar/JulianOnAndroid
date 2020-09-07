@@ -11,6 +11,10 @@ data class Repetition(var name:String,var topic:String,var number:Int,var isReve
     var repetitionTime:Long=creationTime+numberOfDaysToNextRepetition*24*3600*1000
     @PrimaryKey(autoGenerate = true)
     var id:Int=0
+    fun getFullName():String
+    {
+        return "$name $number"
+    }
 
 
 }
