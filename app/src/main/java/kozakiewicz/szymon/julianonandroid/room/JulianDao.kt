@@ -10,13 +10,16 @@ interface JulianDao {
     fun insertRepetition(newRepetition: Repetition):Long
 
     @Insert
-    fun insertQuestion(newQuestion: Question):Long
+    fun insertQuestion(newQuestion: Question)
 
     @Delete
     fun delete(repetitionToDelete: Repetition)
 
     @Update
     fun update(repetitionToUpdate:Repetition)
+
+    @Update
+    fun updateQuestion(questionToUpdate:Question)
 
     @Query("SELECT MAX(number) FROM Repetition WHERE name=(:repetitionName)")
     fun getMaxNumberFromDatabase(repetitionName: String): Int

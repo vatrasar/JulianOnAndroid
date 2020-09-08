@@ -1,10 +1,13 @@
 package kozakiewicz.szymon.julianonandroid.activites
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kozakiewicz.szymon.julianonandroid.R
 import kozakiewicz.szymon.julianonandroid.room.Repository
+
 
 class AnswerActivity : AppCompatActivity() {
     lateinit  var repository: Repository
@@ -12,9 +15,9 @@ class AnswerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
         repository= Repository(application)
-        var repetitionId=intent.getIntExtra("repetitionId",0)
-        var questionId=intent.getIntExtra("questionId",0)
-        var questionNumber=intent.getIntExtra("questionsNumber",0)
+        var repetitionId=intent.getIntExtra("repetitionId", 0)
+        var questionId=intent.getIntExtra("questionId", 0)
+        var questionNumber=intent.getIntExtra("questionsNumber", 0)
         var myAnswer=intent.getStringExtra("myAnswer")
         var repetition=repository.getRepetition(repetitionId)
         var question=repository.getQuestion(repetitionId)
@@ -30,5 +33,22 @@ class AnswerActivity : AppCompatActivity() {
 
 
 
+    }
+
+    fun onKnow(view: View) {
+
+        val resultIntent = Intent()
+
+        resultIntent.putExtra("status",1 )
+        setResult(RESULT_OK, resultIntent)
+        finish()
+    }
+
+    fun onDontKnow(view: View) {
+        val resultIntent = Intent()
+
+        resultIntent.putExtra("status",0 )
+        setResult(RESULT_OK, resultIntent)
+        finish()
     }
 }

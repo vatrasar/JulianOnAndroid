@@ -25,7 +25,7 @@ class Repository(aplication: Application){
         }
     }
 
-    fun insertNewRepetion(newRepetition: Repetition):Long
+    fun insertNewRepetion(newRepetition: Repetition):Int
     {
         var job=CoroutineScope(Dispatchers.IO).async {
             dao.insertRepetition(newRepetition)
@@ -33,7 +33,7 @@ class Repository(aplication: Application){
         }
 
         return runBlocking {
-            return@runBlocking job.await()
+            return@runBlocking job.await().toInt()
         }
     }
 
@@ -86,5 +86,9 @@ class Repository(aplication: Application){
         return runBlocking {
             return@runBlocking job.await()
         }
+    }
+
+    fun updateQuestion(questionToUpdate: Question) = CoroutineScope(Dispatchers.IO).launch {
+        dao.updateQuestion(questionToUpdate)
     }
 }

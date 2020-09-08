@@ -7,15 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import kozakiewicz.szymon.julianonandroid.R
 import kozakiewicz.szymon.julianonandroid.room.Question
 import kozakiewicz.szymon.julianonandroid.room.Repository
+import kozakiewicz.szymon.julianonandroid.room.Status
 
 class AddNewQuestionActivity : AppCompatActivity() {
     lateinit var repository: Repository
-    var repetitionId:Long=0
+    var repetitionId:Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_question)
         repository= Repository(application)
-        repetitionId=intent.getLongExtra("repetitionId",-1)
+        repetitionId=intent.getIntExtra("repetitionId",-1)
 
 
     }
@@ -28,7 +29,7 @@ class AddNewQuestionActivity : AppCompatActivity() {
         var question:Question= Question(
             txtQuestion.text.toString(),
             txtAnswer.text.toString(),
-            repetitionId
+            repetitionId,Status.UNCHECKED
         )
         repository.insertNewQuestion(question)
         txtAnswer.text.clear()
