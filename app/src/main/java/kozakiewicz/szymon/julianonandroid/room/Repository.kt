@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.*
 import java.util.*
+import java.util.stream.Collectors
 import kotlin.collections.ArrayList
 
 class Repository(aplication: Application){
@@ -90,5 +91,32 @@ class Repository(aplication: Application){
 
     fun updateQuestion(questionToUpdate: Question) = CoroutineScope(Dispatchers.IO).launch {
         dao.updateQuestion(questionToUpdate)
+    }
+
+    fun finalizeRepetition(repetitionId: Int) {
+        var listOfQuestions=getAllQuestionsOfRepetition(repetitionId)
+        var listOfQuestionForNewRepetition:List<Question> = listOfQuestions.filter({a->a.status==Status.DONT_KNOW})
+        listOfQuestions.forEach({question -> question.status=Status.UNCHECKED })
+
+        var repetition=getRepetition(repetitionId)
+
+
+        repetition.repetitionFinalize()
+        updateRepetition(repetition)
+        var newRepetition:Repetition=Repetition(repetition.name,repetition.topic,getMaxNumberFromDatabase(repetition.name),repetition.isReverse)
+
+        var newRepetitionId =insertNewRepetion(newRepetition)
+        for(question in listOfQuestionForNewRepetition)
+        {
+            question.parentRepetitionId=newRepetitionId
+
+            updateQuestion(question)
+
+        }
+
+    }
+
+    private fun updateRepetition(repetition: Repetition) = CoroutineScope(Dispatchers.IO).launch {
+        dao.update(repetition)
     }
 }

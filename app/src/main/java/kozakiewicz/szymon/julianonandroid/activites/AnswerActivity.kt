@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kozakiewicz.szymon.julianonandroid.R
+import kozakiewicz.szymon.julianonandroid.room.Question
 import kozakiewicz.szymon.julianonandroid.room.Repository
+import kozakiewicz.szymon.julianonandroid.room.Status
 
 
 class AnswerActivity : AppCompatActivity() {
@@ -20,19 +22,30 @@ class AnswerActivity : AppCompatActivity() {
         var questionNumber=intent.getIntExtra("questionsNumber", 0)
         var myAnswer=intent.getStringExtra("myAnswer")
         var repetition=repository.getRepetition(repetitionId)
-        var question=repository.getQuestion(repetitionId)
+        var question=repository.getQuestion(questionId)
         title=repetition.getFullName()
-        var labAnswer=findViewById<TextView>(R.id.labAnswer)
-        var labMyAnswer=findViewById<TextView>(R.id.labYourAnswer)
+        setAnswerPage(question, questionNumber, myAnswer)
+
+
+    }
+
+    private fun setAnswerPage(
+        question: Question,
+        questionNumber: Int,
+        myAnswer: String?
+    ) {
+        var labAnswer = findViewById<TextView>(R.id.labAnswer)
+        var labMyAnswer = findViewById<TextView>(R.id.labYourAnswer)
 
         labAnswer.setText(question.answer)
-        var labCount=findViewById<TextView>(R.id.labCountInfo)
+        if(question.status== Status.KNOW_ONE_WAY)
+            labAnswer.setText(question.question)
+        else
+            labAnswer.setText(question.answer)
+        var labCount = findViewById<TextView>(R.id.labCountInfo)
         labCount.setText("${getString(R.string.remaining)} $questionNumber")
 
         labMyAnswer.setText(myAnswer)
-
-
-
     }
 
     fun onKnow(view: View) {

@@ -30,7 +30,12 @@ class DoRepetitionActivity : AppCompatActivity() {
         labCountInfo.setText("${getString(R.string.remaining)} ${listOfQuestions.size}")
         title="${repetition.name} ${repetition.number}"
         if(listOfQuestions.size==0)
+        {
             finish()
+            return
+        }
+
+
         currentQuestion=listOfQuestions[0]
         setQuestionView()
 
@@ -70,7 +75,7 @@ class DoRepetitionActivity : AppCompatActivity() {
                 currentQuestion.updateStatus(Status.DONT_KNOW,isRepetitionReverse)
                 repository.updateQuestion(currentQuestion)
                 listOfQuestions.removeAt(0)
-                listOfQuestions.add(currentQuestion)
+
             }
             1->{
                 var isRepetitionReverse=repository.getRepetition(currentQuestion.parentRepetitionId).isReverse
@@ -81,7 +86,14 @@ class DoRepetitionActivity : AppCompatActivity() {
                     listOfQuestions.add(currentQuestion)
             }
         }
+        if(listOfQuestions.isEmpty()) {
+            repository.finalizeRepetition(repetitionId)
+            finish()
+            return
+
+        }
         currentQuestion=listOfQuestions[0]
+
         setQuestionView()
 
 

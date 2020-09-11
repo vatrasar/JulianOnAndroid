@@ -29,6 +29,7 @@ class RepeatListActivity : AppCompatActivity() {
         manager.orientation= LinearLayoutManager.VERTICAL
         recyclerView.layoutManager=manager
         listOfRepetitions=repetitionListViewModel.getAllRepetitionslist()
+        
         listOfRepetitions.observe(this,{
             if(it.isNotEmpty())
             {
