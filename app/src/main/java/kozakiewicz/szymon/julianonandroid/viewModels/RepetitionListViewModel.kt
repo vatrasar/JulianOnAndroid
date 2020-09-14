@@ -13,6 +13,7 @@ class RepetitionListViewModel(application: Application): AndroidViewModel(applic
     private var repetitionsList: LiveData<List<Repetition>> =repository.getAllRepetitionsForToday()
     fun getAllRepetitionslist(): LiveData<List<Repetition>>
     {
+
        return repetitionsList
     }
 

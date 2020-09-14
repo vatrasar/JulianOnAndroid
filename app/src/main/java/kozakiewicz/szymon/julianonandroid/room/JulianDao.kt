@@ -36,5 +36,8 @@ interface JulianDao {
     @Query("SELECT * FROM Question WHERE id=(:questionId)")
     fun getQuestion(questionId: Int):Question
 
+    @Query("SELECT Repetition.id FROM Repetition LEFT JOIN Question ON Question.parentRepetitionId=Repetition.id WHERE Question.id is NULL")
+    fun getAllRepetionsWhichHasNoQuestions():List<Int>
+
 
 }

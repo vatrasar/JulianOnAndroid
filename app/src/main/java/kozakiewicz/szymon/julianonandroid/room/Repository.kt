@@ -40,7 +40,25 @@ class Repository(aplication: Application){
 
     fun getAllRepetitionsForToday(): LiveData<List<Repetition>> {
         var job=CoroutineScope(Dispatchers.IO).async {
+            var repetitionsWithNoQuestionsList=getAllRepetionsWhichHasNoQuestions()
+            for(repetitionId in repetitionsWithNoQuestionsList)
+            {
+
+                dao.delete(getRepetition(repetitionId))
+            }
             dao.getAllRepetitionsForToday()
+
+        }
+
+        return runBlocking {
+            return@runBlocking job.await()
+        }
+    }
+
+    private fun getAllRepetionsWhichHasNoQuestions(): List<Int> {
+        var job=CoroutineScope(Dispatchers.IO).async {
+
+            dao.getAllRepetionsWhichHasNoQuestions()
 
         }
 
